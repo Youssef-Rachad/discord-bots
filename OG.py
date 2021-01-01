@@ -1,10 +1,14 @@
-import keep_alive
+#import keep_alive
 import discord
 import os
 import requests
 import json
 import random
-
+from dotenv import load_dotenv
+from pathlib import Path
+env_path = Path('.') / '.env'
+load_dotenv(dotenv_path=env_path)
+print(os.getenv('TOKEN'))
 client = discord.Client()
 
 '''
@@ -44,7 +48,7 @@ async def on_message(message):
       await message.channel.send(random.choice(starter_encouragements))
 
 
-keep_alive.keep_alive()
+#keep_alive.keep_alive()
 
 client.run(os.getenv('TOKEN'))
 
