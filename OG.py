@@ -58,10 +58,14 @@ async def ping(ctx):
 async def hello(ctx):
     print(ctx.author)
     await ctx.channel.send("Hello {}".format(ctx.author))
-    role = discord.utils.find(lambda role: role.name == "botter", ctx.message.server.roles)
-    if role in ctx.author.roles: 
-        roleToAdd = discord.utils.get(ctx.message.author, name = "botter")
-        await bot.add_roles(ctx.author,roleToAdd)
+    role = discord.utils.find(lambda r: r.name == "botter", ctx.message.author.guild.roles)
+    print(role)
+    if role not in ctx.author.roles: 
+        print("not in")
+        print(ctx.author.roles)
+        roleToAdd = discord.utils.get(ctx.author.guild.roles, name = "botter")
+        print(roleToAdd)
+        await ctx.author.add_roles(roleToAdd,reason="interaction")
 
 @bot.command(
         name="inspire",
